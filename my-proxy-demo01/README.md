@@ -1,0 +1,1 @@
+demo01用jdk提供的InvocationHandler和Proxy实现动态代理,需要用接口,否则无法产生代理对象.

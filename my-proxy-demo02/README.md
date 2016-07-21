@@ -1,0 +1,2 @@
+AOP用于细粒度方法级别的权限控制,demo02中PersonService的业务方法只有当PersonService.getUsername()不为空时,才调用.
+需要被控制的方法,方法主要做什么事情等思考步骤都可以称为"横切性关注点";
