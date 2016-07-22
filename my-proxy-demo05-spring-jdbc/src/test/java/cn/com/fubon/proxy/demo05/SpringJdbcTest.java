@@ -20,7 +20,7 @@ public class SpringJdbcTest {
 	}
 	
 	@Test
-	public void testSave(){
+	public void testSave() throws Exception{
 		personService.save(new Person("lisi"));
 	}
 	
