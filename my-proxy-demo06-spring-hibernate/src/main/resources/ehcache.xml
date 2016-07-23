@@ -14,24 +14,6 @@
         memoryStoreEvictionPolicy="LRU"
         statistics="false"/>
 
-	<cache name="org.hibernate.cache.internal.StandardQueryCache"
-    	maxElementsInMemory="5"
-    	eternal="false"
-    	timeToLiveSeconds="120"
-    	overflowToDisk="true" />
- 
-    <cache name="org.hibernate.cache.spi.UpdateTimestampsCache"
-    	maxElementsInMemory="5000"
-    	eternal="true"
-    	overflowToDisk="true" />
-    <!-- 	        
-	<cache name="cn.com.fubon.proxy.demo06.domain.Person" 
-		maxElementsInMemory="100" 
-		eternal="false"
-		overflowToDisk="true" 
-		timeToIdleSeconds="300" 
-		timeToLiveSeconds="600" 
-		diskPersistent="false"/> -->
 </ehcache>
 <!-- 
 defaultCache节点为缺省的缓存策略

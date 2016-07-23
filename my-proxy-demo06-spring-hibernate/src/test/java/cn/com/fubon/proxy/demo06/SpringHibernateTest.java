@@ -75,7 +75,7 @@ public class SpringHibernateTest {
 
 	/**
 	 * 二级缓存,应用程序级别的缓存,也是sessionFactory级别缓存,不同session的缓存
-	 * 为什么二级缓存没有生效??? 为什么在实体上配置CacheConcurrencyStrategy.NONSTRICT_READ_WRITE策略就可以??
+	 * 为什么二级缓存没有生效??? 为什么在实体上配置CacheConcurrencyStrategy.NONSTRICT_READ_WRITE并发访问策略就可以??
 	 */
 	@Test
 	public void getPersonsHibernateSessionFactoryCache() {
