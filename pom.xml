@@ -47,5 +47,6 @@
     <module>my-proxy-demo03-cglib</module>
     <module>my-proxy-demo04-spring-aop</module>
     <module>my-proxy-demo05-spring-jdbc</module>
+    <module>my-proxy-demo06-spring-hibernate</module>
   </modules>
 </project>
