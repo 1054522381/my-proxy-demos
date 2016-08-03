@@ -14,6 +14,8 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<context:annotation-config />
+	<context:component-scan base-package="cn.com.fubon"></context:component-scan>
 	<context:property-placeholder location="classpath:jdbc.properties"/>
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="url" value="${url}"/>
@@ -57,9 +59,9 @@
 			</value>
         </property>
     </bean>
-
+<!-- 
 	<bean id="personService" class="cn.com.fubon.proxy.demo06.service.impl.PersonServiceImpl">
 		<constructor-arg name="dataSource" ref="dataSource" />
 		<constructor-arg name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	</bean> -->
 </beans>

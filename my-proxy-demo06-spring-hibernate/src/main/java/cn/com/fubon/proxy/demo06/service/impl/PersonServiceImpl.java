@@ -5,9 +5,11 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,11 +40,16 @@ import cn.com.fubon.proxy.demo06.service.PersonService;
  * 
  * @author guo
 */
-
+@Service
 @Transactional // 指定当前bean中的所有方法要执行事务管理
 public class PersonServiceImpl extends HibernateDaoSupport implements PersonService {
 	private JdbcTemplate jdbcTemplate;
 	
+	public PersonServiceImpl(){
+		
+	}
+	
+	@Autowired
 	public PersonServiceImpl(DataSource dataSource,SessionFactory sessionFactory){
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 		this.setHibernateTemplate(new HibernateTemplate(sessionFactory));
