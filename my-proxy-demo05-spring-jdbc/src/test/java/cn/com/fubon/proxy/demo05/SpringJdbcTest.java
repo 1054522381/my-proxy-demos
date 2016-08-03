@@ -34,9 +34,7 @@ public class SpringJdbcTest {
 	@Test
 	public void getPersons(){
 		List<Person> persons = personService.getPersons();
-		for(Person person : persons){
-			System.out.println(person);
-		}
+		System.out.println(persons);
 	}
 	
 	@Test

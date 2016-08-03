@@ -35,6 +35,12 @@ public class SpringHibernateTest {
 		Person p = personService.getPerson(1);
 		System.out.println(p);
 	}
+
+	@Test
+	public void getPersonsHibernate() throws Exception{
+		List<Person> result = personService.getPersons();
+		System.out.println(result);
+	}
 	
 	/**
 	 * 查询缓存,只产生一条select语句

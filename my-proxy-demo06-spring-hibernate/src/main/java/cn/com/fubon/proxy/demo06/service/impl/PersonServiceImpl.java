@@ -6,6 +6,8 @@ import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,13 +40,12 @@ import cn.com.fubon.proxy.demo06.service.PersonService;
 */
 
 @Transactional // 指定当前bean中的所有方法要执行事务管理
-public class PersonServiceImpl implements PersonService {
-	private SessionFactory sessionFactory;
+public class PersonServiceImpl extends HibernateDaoSupport implements PersonService {
 	private JdbcTemplate jdbcTemplate;
 	
 	public PersonServiceImpl(DataSource dataSource,SessionFactory sessionFactory){
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
-		this.sessionFactory = sessionFactory;
+		this.setHibernateTemplate(new HibernateTemplate(sessionFactory));
 		// 构造方法中用的是默认的事务管理,@Transactional事务管理没有生效,每个dml为单独事务.
 		//jdbcTemplate.update("insert into person(name) values(?)", "constructor1");
 		//jdbcTemplate.update("insert into person(name) values(?)", "constructor11");
@@ -62,19 +63,14 @@ public class PersonServiceImpl implements PersonService {
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	@Override
 	public List<Person> getPersons() {
-		List<Person> result = jdbcTemplate.query("select * from person", new PersonRowMapper());
+		List<Person> result = this.getHibernateTemplate().loadAll(Person.class);
 		return result;
 	}
 
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	@Override
 	public Person getPerson(Integer id) {
-		Person p = (Person)sessionFactory.getCurrentSession()
-				.createSQLQuery("select * from person where id=?")
-				.addEntity(Person.class)
-				.setParameter(0, id)
-				.uniqueResult();
-		
+		Person p = this.getHibernateTemplate().get(Person.class, id);
 		return p;
 	}
 
